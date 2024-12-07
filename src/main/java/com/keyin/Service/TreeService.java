@@ -5,6 +5,7 @@ import com.keyin.Tree.BinarySearchTree;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
@@ -20,6 +21,7 @@ public class TreeService {
         for (int number : numbers) {
             tree.insert(number);
         }
+        tree.setInputValues(Arrays.stream(numbers).boxed().collect(Collectors.toList()));
         return tree;
     }
 

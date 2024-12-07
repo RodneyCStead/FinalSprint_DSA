@@ -12,6 +12,9 @@ public class BinarySearchTree {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @ElementCollection
+    private List<Integer> inputValues = new ArrayList<>();
+
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<TreeNode> nodes = new ArrayList<>();
 
@@ -58,5 +61,13 @@ public class BinarySearchTree {
 
     public void setRoot(TreeNode root) {
         this.root = root;
+    }
+
+    public List<Integer> getInputValues() {
+        return inputValues;
+    }
+
+    public void setInputValues(List<Integer> inputValues) {
+        this.inputValues = inputValues;
     }
 }
