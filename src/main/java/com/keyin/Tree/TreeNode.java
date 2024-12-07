@@ -1,8 +1,10 @@
 package com.keyin.Tree;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 
 @Entity
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class TreeNode {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

@@ -1,10 +1,12 @@
 package com.keyin.Tree;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class BinarySearchTree {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -13,7 +15,7 @@ public class BinarySearchTree {
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<TreeNode> nodes = new ArrayList<>();
 
-    @Transient
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private TreeNode root;
 
     public void insert(int value) {
