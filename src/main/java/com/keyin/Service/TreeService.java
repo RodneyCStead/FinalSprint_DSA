@@ -7,6 +7,8 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.StreamSupport;
 
 @Service
 public class TreeService {
@@ -29,6 +31,8 @@ public class TreeService {
     }
 
     public List<BinarySearchTree> getAllTrees() {
-        return trees;
+        Iterable<BinarySearchTree> iterable = treeRepository.findAll();
+        return StreamSupport.stream(iterable.spliterator(), false)
+                .collect(Collectors.toList());
     }
 }
