@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Processed Numbers</title>
+</head>
+<body>
+<h1>Processed Numbers</h1>
+<button onclick="window.history.back()">Back</button>
+<pre id="numbers-json" th:text="${numbers}"></pre>
+<script>
+    const numbers = JSON.parse(document.getElementById('numbers-json').textContent);
+    document.getElementById('numbers-json').textContent = JSON.stringify(numbers, null, 2);
+</script>
+</body>
+</html>

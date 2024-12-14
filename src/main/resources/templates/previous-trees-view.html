@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Previous Trees</title>
+</head>
+<body>
+<h1>Previous Trees</h1>
+<button onclick="window.history.back()">Back</button>
+<button onclick="window.location.href='/simple-view'">Simple View</button>
+<div id="result"></div>
+<script>
+  document.addEventListener('DOMContentLoaded', async () => {
+    const resultDiv = document.getElementById('result');
+    const response = await fetch('http://localhost:8080/previous-trees');
+    const data = await response.json();
+    resultDiv.innerHTML = `<pre>${JSON.stringify(data, null, 2)}</pre>`;
+  });
+</script>
+</body>
+</html>

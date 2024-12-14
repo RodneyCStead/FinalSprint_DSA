@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple View</title>
+    <style>
+        .tree {
+            margin: 20px;
+        }
+        .tree-id {
+            font-weight: bold;
+        }
+        .branch {
+            margin-left: 20px;
+        }
+    </style>
+</head>
+<body>
+<h1>Simple View</h1>
+<div id="trees"></div>
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const trees = JSON.parse(document.getElementById('trees-data').textContent);
+        const treesDiv = document.getElementById('trees');
+
+        trees.forEach(tree => {
+            const treeDiv = document.createElement('div');
+            treeDiv.classList.add('tree');
+            treeDiv.innerHTML = `<div class="tree-id">Tree ID: ${tree.id}</div>`;
+            renderTree(tree.root, treeDiv);
+            treesDiv.appendChild(treeDiv);
+        });
+
+        function renderTree(node, parentDiv) {
+            if (!node) return;
+            const nodeDiv = document.createElement('div');
+            nodeDiv.classList.add('branch');
+            nodeDiv.textContent = node.value;
+            parentDiv.appendChild(nodeDiv);
+
+            if (node.left) {
+                renderTree(node.left, nodeDiv);
+            }
+
+            if (node.right) {
+                renderTree(node.right, nodeDiv);
+            }
+        }
+    });
+</script>
+<script id="trees-data" type="application/json" th:utext="${treesJson}"></script>
+</body>
+</html>
